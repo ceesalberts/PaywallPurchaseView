@@ -24,7 +24,7 @@ The application automatically adapts to each platform's design guidelines and pr
 * **Customizable UI**: Easily modify the view to fit your app's design using XAML
 * **Animated Hero Image**: Includes a shaking effect for the hero image
 * **Dynamic Content**: Displays product details dynamically based on the available purchase options
-* **Subscription Management**: Handles purchasing and restoring subscriptions
+* **Subscription Management**: Has placeholders for purchasing and restoring subscriptions
 * **Trial Support**: Displays trial information and adjusts the call to action accordingly
 * **Cooldown Timer**: Prevents immediate closing of the purchase view, encouraging interaction
 * **Resource Dictionary**: Centralized styling with colors, fonts, and spacing in App.xaml
