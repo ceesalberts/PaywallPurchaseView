@@ -85,7 +85,6 @@ To customize, simply change the return value of this property:
 ```csharp
 public string MainTitleText => "Your Custom Title";
 ```
-```
 
 ### Customizing All Text Content
 
