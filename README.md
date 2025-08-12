@@ -8,6 +8,12 @@ PurchaseView is a .NET MAUI view for implementing a premium access purchase scre
 
 This .NET MAUI version is based on the original SwiftUI implementation created by Adam Lyttle.
 
+<p align="left">
+  <img src="https://raw.githubusercontent.com/ceesalberts/PaywallPurchaseView/main/Screen1.png" width="250" />
+  <img width="20"/>
+  <img src="https://raw.githubusercontent.com/ceesalberts/PaywallPurchaseView/main/Screen2.png" width="250" />
+</p>
+
 ## Supported Platforms
 
 This application is built with .NET MAUI and supports the following platforms:
