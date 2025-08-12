@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PaywallPurchaseView.Views.PurchaseView"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:PaywallPurchaseView.ViewModels"
+             x:DataType="viewmodels:PurchaseViewModel"
+             BackgroundColor="{StaticResource BackgroundGray}"
+             Title="Purchase View">
+
+    <Grid>
+        <ScrollView>
+            <StackLayout Spacing="10" Padding="10" VerticalOptions="Start">
+                
+                <!-- Header with Close Button -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Label Grid.Column="1" 
+                           Text="{Binding CloseButtonText}" 
+                           FontSize="40"
+                           TextColor="Gray"
+                           Opacity="{Binding ShowCloseButton, Converter={StaticResource BoolToOpacityConverter}}"
+                           HorizontalOptions="End">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CloseViewCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+
+                <!-- Hero Image with Shake Animation -->
+                <Label Text="{Binding HeroIconText}" 
+                       FontSize="{StaticResource HeroIconSize}"
+                       Scale="{Binding ShakeZoom}"
+                       Rotation="{Binding ShakeDegrees}"
+                       HorizontalOptions="Center"
+                       Margin="{StaticResource SectionMargin}"/>
+
+                <!-- Title and Features -->
+                <Border BackgroundColor="{StaticResource CardBackground}"
+                       Stroke="{StaticResource BorderGray}"
+                       StrokeThickness="1"
+                       StrokeShape="RoundRectangle 15"
+                       Padding="{StaticResource CardPadding}"
+                       Margin="{StaticResource SectionMargin}">
+                    <StackLayout Spacing="15">
+                        <Label Text="{Binding MainTitleText}"
+                               FontSize="{StaticResource TitleFontSize}"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource TextPrimary}"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"/>
+                        
+                        <StackLayout Spacing="12" Padding="0,5,0,0">
+                        <!-- Feature 1 -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" 
+                                   Text="{Binding Feature1IconText}" 
+                                   FontSize="{StaticResource FeatureIconSize}"
+                                   TextColor="{StaticResource PrimaryBlue}"
+                                   Margin="0,0,12,0"
+                                   VerticalOptions="Center"/>
+                            <Label Grid.Column="1" 
+                                   Text="{Binding Feature1Text}"
+                                   FontSize="{StaticResource FeatureTextSize}"
+                                   TextColor="{StaticResource TextSecondary}"
+                                   VerticalOptions="Center"/>
+                        </Grid>
+                        
+                        <!-- Feature 2 -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" 
+                                   Text="{Binding Feature2IconText}" 
+                                   FontSize="{StaticResource FeatureIconSize}"
+                                   TextColor="{StaticResource PrimaryBlue}"
+                                   Margin="0,0,12,0"
+                                   VerticalOptions="Center"/>
+                            <Label Grid.Column="1" 
+                                   Text="{Binding Feature2Text}"
+                                   FontSize="{StaticResource FeatureTextSize}"
+                                   TextColor="{StaticResource TextSecondary}"
+                                   VerticalOptions="Center"/>
+                        </Grid>
+                        
+                        <!-- Feature 3 -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" 
+                                   Text="{Binding Feature3IconText}" 
+                                   FontSize="{StaticResource FeatureIconSize}"
+                                   TextColor="{StaticResource PrimaryBlue}"
+                                   Margin="0,0,12,0"
+                                   VerticalOptions="Center"/>
+                            <Label Grid.Column="1" 
+                                   Text="{Binding Feature3Text}"
+                                   FontSize="{StaticResource FeatureTextSize}"
+                                   TextColor="{StaticResource TextSecondary}"
+                                   VerticalOptions="Center"/>
+                        </Grid>
+                        
+                        <!-- Feature 4 -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" 
+                                   Text="{Binding Feature4IconText}" 
+                                   FontSize="{StaticResource FeatureIconSize}"
+                                   TextColor="{StaticResource PrimaryOrange}"
+                                   Margin="0,0,12,0"
+                                   VerticalOptions="Center"/>
+                            <Label Grid.Column="1" 
+                                   Text="{Binding Feature4Text}"
+                                   FontSize="{StaticResource FeatureTextSize}"
+                                   TextColor="{StaticResource TextSecondary}"
+                                   VerticalOptions="Center"/>
+                        </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Border>
+
+                <!-- Product Selection -->
+                <Border BackgroundColor="{StaticResource CardBackground}"
+                       Stroke="{StaticResource BorderGray}"
+                       StrokeThickness="1"
+                       StrokeShape="RoundRectangle 15"
+                       Padding="{StaticResource CardPadding}"
+                       Margin="{StaticResource SectionMargin}">
+                    <StackLayout Spacing="12">
+                        
+                        <!-- Yearly Plan -->
+                    <Border Margin="{StaticResource ProductMargin}"
+                           Padding="{StaticResource ProductPadding}"
+                           Stroke="{Binding SelectedProductId, Converter={StaticResource ProductSelectionToColorConverter}, ConverterParameter=demo_y}"
+                           BackgroundColor="{Binding SelectedProductId, Converter={StaticResource ProductSelectionToBackgroundConverter}, ConverterParameter=demo_y}"
+                           StrokeThickness="2"
+                           StrokeShape="RoundRectangle 12">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <!-- Product Details -->
+                            <StackLayout Grid.Column="0" Spacing="4">
+                                <Label Text="{Binding YearlyPlanName}"
+                                       FontAttributes="Bold"
+                                       FontSize="{StaticResource ProductTitleSize}"
+                                       TextColor="{StaticResource TextPrimary}"/>
+                                <StackLayout Orientation="Horizontal" Spacing="0">
+                                    <Label Text="{Binding YearlyPlanPrice, StringFormat='{0} per '}"
+                                           TextColor="{StaticResource TextTertiary}"
+                                           FontSize="{StaticResource ProductTextSize}"/>
+                                    <Label Text=" "/>
+                                    <Label Text="{Binding YearlyPlanDuration}"
+                                           TextColor="{StaticResource TextTertiary}"
+                                           FontSize="{StaticResource ProductTextSize}"/>
+                                </StackLayout>
+                            </StackLayout>
+                            
+                            <!-- Save Badge -->
+                            <Border Grid.Column="1" 
+                                   BackgroundColor="{StaticResource PrimaryRed}"
+                                   StrokeShape="RoundRectangle 8"
+                                   HeightRequest="30"
+                                   Padding="{StaticResource BadgePadding}"
+                                   Margin="0,0,12,0">
+                                <Label TextColor="White"
+                                       VerticalOptions="Center"
+                                       FontSize="{StaticResource SaveBadgeTextSize}"
+                                       FontAttributes="Bold">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding SaveBadgePrefix}" 
+                                                  TextColor="White" 
+                                                  FontAttributes="Bold" />
+                                            <Span Text=" " 
+                                                  TextColor="White" 
+                                                  FontAttributes="Bold" />
+                                            <Span Text="{Binding CalculatePercentageSaved}" 
+                                                  TextColor="White" 
+                                                  FontAttributes="Bold" />
+                                            <Span Text="{Binding SaveBadgeSuffix}" 
+                                                  TextColor="White" 
+                                                  FontAttributes="Bold" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </Border>
+                            
+                            <!-- Selection Indicator -->
+                            <Grid Grid.Column="2">
+                                <Ellipse Fill="{Binding SelectedProductId, Converter={StaticResource ProductSelectionToColorConverter}, ConverterParameter=demo_y}"
+                                         WidthRequest="28"
+                                         HeightRequest="28"/>
+                                <Label Text="{Binding CheckmarkText}"
+                                       TextColor="White"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       IsVisible="{Binding SelectedProductId, Converter={StaticResource ProductSelectionToVisibilityConverter}, ConverterParameter=demo_y}"/>
+                            </Grid>
+                        </Grid>
+                        
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectProductCommand}" CommandParameter="demo_y"/>
+                        </Border.GestureRecognizers>
+                    </Border>
+                    
+                    <!-- Weekly Plan -->
+                    <Border Margin="{StaticResource ProductMargin}"
+                           Padding="{StaticResource ProductPadding}"
+                           Stroke="{Binding SelectedProductId, Converter={StaticResource ProductSelectionToColorConverter}, ConverterParameter=demo_w}"
+                           BackgroundColor="{Binding SelectedProductId, Converter={StaticResource ProductSelectionToBackgroundConverter}, ConverterParameter=demo_w}"
+                           StrokeThickness="2"
+                           StrokeShape="RoundRectangle 12">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <!-- Product Details -->
+                            <StackLayout Grid.Column="0" Spacing="4">
+                                <Label Text="{Binding WeeklyPlanName}"
+                                       FontAttributes="Bold"
+                                       FontSize="{StaticResource ProductTitleSize}"
+                                       TextColor="{StaticResource TextPrimary}"/>
+                                <StackLayout Orientation="Horizontal" Spacing="0">
+                                    <Label Text="{Binding WeeklyPlanTrialText, StringFormat='{0} '}"
+                                           TextColor="{StaticResource TextTertiary}"
+                                           FontSize="{StaticResource ProductTextSize}"/>
+                                    <Label Text=" "/>
+                                    <Label Text="{Binding WeeklyPlanPrice, StringFormat='{0} per '}"
+                                           TextColor="{StaticResource TextTertiary}"
+                                           FontSize="{StaticResource ProductTextSize}"/>
+                                    <Label Text=" "/>
+                                    <Label Text="{Binding WeeklyPlanDuration}"
+                                           TextColor="{StaticResource TextTertiary}"
+                                           FontSize="{StaticResource ProductTextSize}"/>
+                                </StackLayout>
+                            </StackLayout>
+                            
+                            <!-- Selection Indicator -->
+                            <Grid Grid.Column="2">
+                                <Ellipse Fill="{Binding SelectedProductId, Converter={StaticResource ProductSelectionToColorConverter}, ConverterParameter=demo_w}"
+                                         WidthRequest="28"
+                                         HeightRequest="28"/>
+                                <Label Text="{Binding CheckmarkText}"
+                                       TextColor="White"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       IsVisible="{Binding SelectedProductId, Converter={StaticResource ProductSelectionToVisibilityConverter}, ConverterParameter=demo_w}"/>
+                            </Grid>
+                        </Grid>
+                        
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectProductCommand}" CommandParameter="demo_w"/>
+                        </Border.GestureRecognizers>
+                    </Border>
+                    
+                    <!-- Free Trial Toggle -->
+                    <Border BackgroundColor="{StaticResource ToggleBackground}" 
+                           Stroke="{StaticResource BorderGray}"
+                           StrokeThickness="1"
+                           StrokeShape="RoundRectangle 10"
+                           Padding="15,12"
+                           Margin="0,8,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" 
+                                   Text="{Binding FreeTrialEnabledText}"
+                                   FontAttributes="Bold"
+                                   FontSize="{StaticResource FooterTextSize}"
+                                   TextColor="{StaticResource TextSecondary}"
+                                   VerticalOptions="Center"/>
+                            <Switch Grid.Column="1" 
+                                    IsToggled="{Binding FreeTrial}"/>
+                        </Grid>
+                    </Border>
+                        </StackLayout>
+                </Border>
+
+                <!-- Purchase Button -->
+                <Border BackgroundColor="{StaticResource CardBackground}"
+                       Stroke="{StaticResource BorderGray}"
+                       StrokeThickness="1"
+                       StrokeShape="RoundRectangle 15"
+                       Padding="{StaticResource CardPadding}"
+                       Margin="{StaticResource SectionMargin}">
+                    <StackLayout Spacing="0">
+                        <Grid>
+                            <ActivityIndicator IsRunning="{Binding IsPurchasing}"
+                                               IsVisible="{Binding IsPurchasing}"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"/>
+                            
+                            <Button Text="{Binding CallToActionText}"
+                                    Command="{Binding PurchaseSubscriptionCommand}"
+                                    BackgroundColor="{StaticResource PrimaryBlue}"
+                                    TextColor="White"
+                                    FontAttributes="Bold"
+                                    FontSize="{StaticResource ButtonTextSize}"
+                                    CornerRadius="12"
+                                    Padding="{StaticResource ButtonPadding}"
+                                    IsVisible="{Binding IsPurchasing, Converter={StaticResource InverseBoolConverter}}">
+                                <Button.ImageSource>
+                                    <FontImageSource FontFamily="Arial" Glyph="{Binding ArrowGlyph}" Color="White"/>
+                                </Button.ImageSource>
+                            </Button>
+                        </Grid>
+                    </StackLayout>
+                </Border>
+
+                <!-- Footer Links -->
+                <Border BackgroundColor="{StaticResource CardBackground}"
+                       Stroke="{StaticResource BorderGray}"
+                       StrokeThickness="1"
+                       StrokeShape="RoundRectangle 15"
+                       Padding="{StaticResource CardPadding}"
+                       Margin="{StaticResource SectionMargin}">
+                    <StackLayout Orientation="Horizontal" 
+                                 HorizontalOptions="Center" 
+                                 Spacing="15">
+                        <Label Text="{Binding RestoreText}"
+                               TextColor="{StaticResource PrimaryBlue}"
+                               FontSize="{StaticResource FooterTextSize}"
+                               FontAttributes="Bold">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RestorePurchasesCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        
+                        <Label Text="{Binding TermsText}"
+                               TextColor="{StaticResource PrimaryBlue}"
+                               FontSize="{StaticResource FooterTextSize}"
+                               FontAttributes="Bold">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowTermsCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </Border>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage> 
